@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { fetchUUID } from "../LocalTesting/fetchUUID";
-// import { fetchUUID } from "../lib/Util";
+// import { fetchUUID } from "../LocalTesting/fetchUUID";
+import { fetchUUID } from "../lib/Util";
 import * as ProfilesFunctions from "../lib/ProfileFunctions";
 import { useRef } from "react";
 import SearchBox from "./SearchBox";
@@ -16,7 +16,6 @@ import { PlayerCombatGear } from "./ProfileDisplays/PlayerCombatGear";
 import { PlayerStats } from "./ProfileDisplays/PlayerStats";
 import { PlayerSkills } from "./ProfileDisplays/PlayerSkills";
 import { PlayerCollections } from "./ProfileDisplays/PlayerCollections";
-import { cacheHypixelData } from "../LocalTesting/cacheHypixelData";
 
 const Profile = () => {
   const profileContext = useProfileContext();
@@ -33,7 +32,7 @@ const Profile = () => {
   });
   const { profileName } = useParams();
   const navigate = useNavigate();
-
+  const [profileLoading, setProfileLoading] = useState(false);
   const [sortedItems, setSortedItems] = useState(() => {
     const items = JSON.parse(localStorage.getItem("HypixelData"));
     const categories = ["helmet", "chestplate", "leggings", "boots", "necklace", "cloak", "belt", "gloves", "weapon"];
@@ -73,20 +72,23 @@ const Profile = () => {
     const response = await fetch(`/.netlify/functions/api?uuid=${uuid}`);
 
     // use this when local testing
-    // const response = await fetch(`https://api.hypixel.net/v2/skyblock/profiles?key=your_key&uuid=${uuid}`);
+    // const response = await fetch(`https://api.hypixel.net/v2/skyblock/profiles?key=543bfc94-e9c7-4f1e-8a52-c46747d0b1eb&uuid=${uuid}`);
     profile = await response.json();
 
     // throw error if player has no hypixel profile
     if (profile.profiles === null) {
       throw new Error("Profile not found");
     }
+    setProfileLoading(false);
     setProfileData(profile);
+
   }
 
   const navigateProfile = (player) => {
+    setProfileLoading(true);
     async function getNewProfile() {
       const uuid = await fetchUUID(player);
-      await getHypixelProfile(uuid.id);
+      getHypixelProfile(uuid.id);
       setUUID(uuid.id);
       navigate(`/profile/${player}`);
     }
@@ -310,11 +312,11 @@ const Profile = () => {
                 <span> Ability: {parseFloat(profileContext.getFinalStats().hitValues?.magic?.toFixed(2)).toLocaleString() ?? 0}</span>
                 {/* Special case for lion pet **no longer applicable since 0.19.8**  */}
                 {/* {profileContext.getFinalStats().hitValues?.magic !== profileContext.getFinalStats().hitValues?.magicFirstStrike && (
-                  <span>
-                    {" "}
-                    Ability First Strike: {parseFloat(profileContext.getFinalStats().hitValues?.magicFirstStrike?.toFixed(2)).toLocaleString() ?? 0}
-                  </span>
-                )} */}
+                <span>
+                  {" "}
+                  Ability First Strike: {parseFloat(profileContext.getFinalStats().hitValues?.magicFirstStrike?.toFixed(2)).toLocaleString() ?? 0}
+                </span>
+              )} */}
               </div>
               <div className='ContentContainer'>
                 <div className='ContentNav'>
@@ -337,12 +339,18 @@ const Profile = () => {
                     Combat Gear
                   </span>
                 </div>
-                {navDisplay.armor && <PlayerArmor sortedItems={sortedItems} />}
-                {navDisplay.equipment && <PlayerEquipment sortedItems={sortedItems} />}
-                {navDisplay.combatGear && <PlayerCombatGear sortedItems={sortedItems} />}
-                {navDisplay.baseStats && <PlayerStats />}
-                {navDisplay.skills && <PlayerSkills skillCaps={skillCaps} />}
-                {navDisplay.collections && <PlayerCollections />}
+                {profileLoading ? (
+                  <div style={{color:'white',display:'flex',justifyContent:'center',alignItems:'center',height:'75%'}}>Loading</div>
+                ) : (
+                  <div>
+                    {navDisplay.armor && <PlayerArmor sortedItems={sortedItems} />}
+                    {navDisplay.equipment && <PlayerEquipment sortedItems={sortedItems} />}
+                    {navDisplay.combatGear && <PlayerCombatGear sortedItems={sortedItems} />}
+                    {navDisplay.baseStats && <PlayerStats />}
+                    {navDisplay.skills && <PlayerSkills skillCaps={skillCaps} />}
+                    {navDisplay.collections && <PlayerCollections />}
+                  </div>
+                )}
               </div>
             </div>
           </div>
