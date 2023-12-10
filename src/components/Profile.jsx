@@ -68,20 +68,34 @@ const Profile = () => {
   });
 
   async function getHypixelProfile(uuid) {
-    let profile;
-    const response = await fetch(`/.netlify/functions/api?uuid=${uuid}`);
+    // check local storage first
+    const recentProfile = JSON.parse(localStorage.getItem("cachedProfile"));
+    const CACHE_DURATION = 60 * 1000;
 
-    // use this when local testing
-    // const response = await fetch(`https://api.hypixel.net/v2/skyblock/profiles?key=543bfc94-e9c7-4f1e-8a52-c46747d0b1eb&uuid=${uuid}`);
-    profile = await response.json();
+    // load cached version
+    if (recentProfile && recentProfile.uuid == uuid && Date.now() - recentProfile.data.lastCache < CACHE_DURATION) {
+      setProfileLoading(false);
+      setProfileData(recentProfile.data);
+    } else {
+      let profile;
+      const response = await fetch(`/.netlify/functions/api?uuid=${uuid}`);
 
-    // throw error if player has no hypixel profile
-    if (profile.profiles === null) {
-      throw new Error("Profile not found");
+      // use this when local testing
+      // const response = await fetch(`https://api.hypixel.net/v2/skyblock/profiles?key=543bfc94-e9c7-4f1e-8a52-c46747d0b1eb&uuid=${uuid}`);
+      profile = await response.json();
+
+      // throw error if player has no hypixel profile
+      if (profile.profiles === null) {
+        throw new Error("Profile not found");
+      } 
+      // load api version
+      else {
+        const cachedProfile = { uuid: uuid, data: profile };
+        localStorage.setItem("cachedProfile", JSON.stringify(cachedProfile));
+        setProfileLoading(false);
+        setProfileData(profile);
+      }
     }
-    setProfileLoading(false);
-    setProfileData(profile);
-
   }
 
   const navigateProfile = (player) => {
@@ -114,6 +128,7 @@ const Profile = () => {
         const data = await fetchUUID(profileName);
         await getHypixelProfile(data.id);
         setUUID(data.id);
+        setProfileLoading(false);
         document.title = `Hycalc - ${profileName}`;
       } catch (error) {
         console.error("Error fetching UUID.");
@@ -134,6 +149,7 @@ const Profile = () => {
 
   useEffect(() => {
     if (profileName) {
+      setProfileLoading(true);
       validateProfile();
     } else {
       profileContext.buildProfile();
@@ -340,7 +356,7 @@ const Profile = () => {
                   </span>
                 </div>
                 {profileLoading ? (
-                  <div style={{color:'white',display:'flex',justifyContent:'center',alignItems:'center',height:'75%'}}>Loading</div>
+                  <div style={{ color: "white", display: "flex", justifyContent: "center", alignItems: "center", height: "75%" }}>Loading</div>
                 ) : (
                   <div>
                     {navDisplay.armor && <PlayerArmor sortedItems={sortedItems} />}
