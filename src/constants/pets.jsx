@@ -357,7 +357,6 @@ export const pets = {
         maxRarity: 'LEGENDARY',
         abilities: [
             {
-                minRarity: 'EPIC',
                 resultType: 'globalMultiplier-multi-all',
                 enabled: false,
                 effectResults: (petLevel, tier) => {
@@ -382,7 +381,6 @@ export const pets = {
                 },
             },
             {
-                minRarity: 'EPIC',
                 resultType: 'armorStatsBuff',
                 postEffect: true,
                 enabled: true,
@@ -409,7 +407,6 @@ export const pets = {
                 },
             },
             {
-                minRarity: 'LEGENDARY',
                 resultType: 'doubleBooks',
                 enabled: true,
                 effectResults: (petLevel, tier) => {
@@ -436,7 +433,6 @@ export const pets = {
         maxRarity: 'LEGENDARY',
         abilities: [
             {
-                minRarity: 'EPIC',
                 resultType: 'baseMultiplier',
                 condition: {
                     requirement: 'targetMob',
@@ -458,7 +454,6 @@ export const pets = {
                 },
             },
             {
-                minRarity: 'EPIC',
                 resultType: 'buffWeapon',
                 condition: {
                     requirement: 'weapon',
@@ -487,15 +482,14 @@ export const pets = {
                 },
             },
             {
-                minRarity: 'LEGENDARY',
                 resultType: 'globalMultiplier-add-all',
                 enabled: true,
-                processEffect: (profileState) =>{
-                    const increaseValue = (0.1 * profileState.playerGear.pet.level) / 100;
-                    for (const [stat,_] of Object.entries(profileState.statMultipliers)){
-                        profileState.statMultipliers[stat] += increaseValue;
-                    };
-                },
+                // processEffect: (profileState) =>{
+                //     const increaseValue = (0.1 * profileState.playerGear.pet.level) / 100;
+                //     for (const [stat,_] of Object.entries(profileState.statMultipliers)){
+                //         profileState.statMultipliers[stat] += increaseValue;
+                //     };
+                // },
                 effectResults: (petLevel, tier) => {
                     return { percentage: (0.1 * petLevel) / 100 }
                 },
@@ -536,7 +530,6 @@ export const pets = {
                 'action': 'none'
             },
             {
-                minRarity: 'EPIC',
                 resultType: 'armorStatsBuff',
                 postEffect: true,
                 enabled: true,
@@ -927,7 +920,6 @@ export const pets = {
                         ' health.',
                     ];
                 },
-                minRarity: 'LEGENDARY',
                 resultType: 'globalMultiplier-multi',
                 enabled: true,
                 effectResults: (petLevel, tier) => {
@@ -1034,7 +1026,6 @@ export const pets = {
                         <span key="key2" style={{ color: yellow }}> ⚔ Bonus Attack Speed.</span>,
                     ];
                 },
-                minRarity: 'LEGENDARY',
                 resultType: 'globalMultiplier-multi',
                 enabled: true,
                 effectResults: (petLevel, tier) => {
@@ -1095,7 +1086,6 @@ export const pets = {
                 'action': 'none'
             },
             {
-                minRarity: 'RARE',
                 resultType: 'buffWeapon',
                 condition: {
                     requirement: 'weapon',
@@ -1393,7 +1383,6 @@ export const pets = {
                 'action': 'none'
             },
             {
-                minRarity: 'EPIC',
                 resultType: 'buffWeapon',
                 condition: {
                     requirement: 'weapon',
@@ -1629,8 +1618,8 @@ export const pets = {
                 minRarity: 'RARE',
                 description: (petLevel, tier) => {
                     const initialVal = {
-                        LEGENDARY: 0.15,
-                        LEGENDARY: 0.17,
+                        RARE: 0.15,
+                        EPIC: 0.17,
                         LEGENDARY: 0.3,
                     }
                     return [
@@ -1808,7 +1797,6 @@ export const pets = {
         maxRarity: 'LEGENDARY',
         abilities: [
             {
-                minRarity: 'EPIC',
                 resultType: 'globalMultiplier-add',
                 enabled: true,
                 effectResults: (petLevel, tier) => {
@@ -3411,7 +3399,6 @@ export const pets = {
                 },
             },
             {
-                minRarity: 'LEGENDARY',
                 resultType: 'buffWeapon',
                 condition: {
                     requirement: 'weapon',
@@ -3656,7 +3643,6 @@ export const pets = {
                 }
             },
             {
-                minRarity: 'LEGENDARY',
                 resultType: 'armorStatsBuff',
                 postEffect: true,
                 enabled: true,
