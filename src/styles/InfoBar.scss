@@ -1,0 +1,95 @@
+.InfoBar {
+    position: fixed;
+    padding: 0px 10px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    width: 100%;
+    height: 60px;
+    column-gap: 100px;
+    row-gap: 10px;
+    background-color: rgb(5, 11, 16);
+    border-bottom: 1px solid rgb(80, 80, 80);
+    color: white;
+    z-index: 1;
+}
+
+.InfoBar-PlayerInfo {
+    text-transform: capitalize;
+    white-space: pre-wrap;
+    display: flex;
+    align-items: center;
+}
+
+.InfoBar-Cutename {
+    display: flex;
+    align-items: center;
+    position: relative;
+    max-height: 45px;
+    background-color: #6462622d;
+    border: 1px solid aqua;
+    border-radius: 10px;
+    padding: 15px;
+    transition: height 0.25s ease-in;
+    cursor: pointer;
+}
+
+.InfoBar-Cutename-Dropdown {
+    position: absolute;
+    border-radius: 10px;
+    width: 150px;
+    background-color: #363636e7;
+    
+    overflow-y: auto;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    left: 0px;
+    top: 43px;
+    max-height: 0px;
+    overflow: hidden;
+    transition: max-height 0.20s ease-in-out;
+}
+
+.InfoBar-Cutename:hover {
+    .InfoBar-Cutename-Dropdown {
+        max-height: 200px;
+        border: 1px solid aqua;
+    }
+}
+
+.InfoBar-Cutename-Dropdown-item {
+    font-size: 18px;
+    color: white;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.InfoBar-Cutename-Dropdown-item:hover {
+    background-color: rgba(37, 136, 230, 0.822);
+}
+
+.InfoBar-Player-Search {
+    width: 175px;
+    height: 30px;
+    border: 1px solid rgb(80, 80, 80);   
+    border-radius: 5px;
+    outline: none;
+    background-color: transparent;
+    color: white;
+}
+
+.InfoBar-Player-Search-button {
+    border: 1px solid rgb(80, 80, 80);  
+    border-radius: 5px;
+    width: 75px;
+    outline: none;
+    background-color: transparent;
+    color: white;
+    cursor: pointer;
+}
+
+.InfoBar-Player-Search:hover, .InfoBar-Player-Search-button:hover {
+    border-color: aqua;
+}

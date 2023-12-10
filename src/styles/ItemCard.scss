@@ -1,0 +1,210 @@
+.ItemCard-Container {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 10px;
+    width: 100%;
+    gap: 10px;
+}
+
+.margin-left {
+    margin-left: 10px;
+}
+
+.itemCard {
+    background: rgb(0, 0, 0);
+    color: #dfdfdf;
+    border: 2px solid blueviolet;
+    border-radius: 10px;
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    min-width: 300px;
+    max-width: 325px;
+    row-gap: 10PX;
+    text-transform: capitalize;
+    height: fit-content;
+    position: relative;
+    margin-bottom: 10px;
+}
+
+.ItemCard-properties {
+    font-size: 14px;
+}
+
+.ItemCard-stat {
+    margin-right: 5px;
+}
+
+.itemCard-reforge-dropdown {
+    font-size: 14px;
+    background-color: black;
+    color: #dfdfdf;
+    text-transform: capitalize;
+    padding-bottom: 10px;
+    border: 0px solid;
+    outline: none;
+    border-radius: 5px;
+}
+
+.itemCard-items-dropdown {
+
+    background-color: black;
+    color: #dfdfdf;
+    font-family: 'Minecraft', sans-serif;
+    text-transform: capitalize;
+    font-size: 16px;
+    padding-bottom: 10px;
+    border: 0px solid;
+    border-radius: 5px;
+    outline: none;
+}
+
+.itemCard-dropdown:focus {
+    outline: none;
+}
+
+.itemCard-enchant-container {
+    text-transform: capitalize;
+    text-align: left;
+    width: 100%;
+    margin-bottom: 5px;
+}
+
+.itemCard-enchant {
+    margin-right: 10px;
+    color: rgb(72, 72, 255);
+}
+
+.itemCard-enchant-buttons {
+    padding-top: 5px;
+    display: flex;
+    border-top: 2px solid white;
+    width: 95%;
+}
+
+.itemCard-enchant-buttons button {
+    font-size: 18px;
+    font-size: 14px;
+    outline: none;
+    border: none;
+    border-radius: 2px;
+    margin-right: 12px;
+    padding: 5px;
+    color: rgb(255, 255, 255);
+    background-color: black;
+    transition: background-color 0.3s ease;
+}
+
+.itemCard-enchant-buttons button:hover {
+    background-color: rgba(250, 244, 244, 0.2);
+}
+
+.itemCard-enchant-buttons button:active {
+    background-color: rgba(250, 244, 244, 0.2);
+    transform: scale(1.05);
+}
+
+.itemCard-dropdown::-webkit-scrollbar {
+    width: 20px;
+}
+
+.itemCard-dropdown::-webkit-scrollbar-thumb {
+    background-color: #555555;
+}
+
+.Itemcard-Gemslots {
+    position: relative;
+    display: flex;
+    align-items: center;
+    font-size: 17px;
+    column-gap: 1px;
+}
+
+.Itemcard-Gemslots-Popup {
+    position: absolute;
+    bottom: 25px;
+    display: flex;
+    flex-direction: column;
+    column-gap: 5px;
+    align-items: center;
+    background-color: rgb(0, 0, 0);
+    padding: 5px;
+    border: 1px solid aqua;
+    border-radius: 5px;
+    visibility: collapse;
+    z-index: 1;
+    // overflow: hidden;
+}
+
+.Itemcard-Gemslots-Gem {
+    cursor: pointer;
+    padding: 2px;
+}
+
+.Itemcard-Gemslots-Gem-Symbol {
+    padding: 0px 2px;
+}
+
+.Itemcard-Gemslots-Gem:hover {
+    .Itemcard-Gemslots-Popup {
+        // max-height: 500px;
+        visibility: visible;
+    }
+}
+
+.Itemcard-Gemslots-Gem-image-Container{
+    position: relative;
+}
+.Itemcard-Gemslots-Gem-image-Container:hover{
+    .Itemcard-Gemslots-Gem-image-text{
+        visibility: visible;
+    }
+}
+
+.Itemcard-Gemslots-Gem-image {
+    background-color: rgb(139,139,139);
+    border: 2px inset rgb(255, 255, 255);
+    border-top-color: #b4b4b4;
+    border-left-color: #b4b4b4;
+    width: 30px;
+    height: 30px;
+}
+.Itemcard-Gemslots-Gem-image-Remove {
+    position: relative;
+    padding-left: 7px;
+    font-size: 18px;
+    background-color: rgb(139,139,139);
+    border: 2px inset rgb(255, 255, 255);
+    border-top-color: #b4b4b4;
+    border-left-color: #b4b4b4;
+    width: 30px;
+    height: 30px;
+    color: red;
+}
+
+.Itemcard-Gemslots-Gem-image-text {
+    width: max-content;
+    position: absolute;
+    top: -35px;
+    right: -20px;
+    padding: 3px;
+    background-color: black;
+    border-radius: 5px;
+    border: 1px solid aqua;
+    color: white;
+    font-size: 13px;
+    visibility: collapse;
+    z-index: 1;
+}
+
+.Itemcard-Gemslots-Gem-image:hover, .Itemcard-Gemslots-Gem-image-Remove:hover {
+    background-color: aqua;
+}
+
+.Itemcard-Gemslots-Gems-Container {
+    display: flex;
+    position: relative;
+}
+
+  

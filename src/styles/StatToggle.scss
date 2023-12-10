@@ -1,0 +1,61 @@
+ .StatToggle {
+     position: relative;
+     display: flex;
+     width: 80%;
+     height: 30px;
+ }
+
+ .StatToggle input {
+    cursor: pointer;
+     appearance: none;
+     border-radius: 20px;
+     border: 2px solid aqua;
+     width: 100%;
+     height: 30px;
+     color: white;
+     outline: none;
+ }
+
+ .StatToggle input::before,
+ .StatToggle input::after {
+     position: absolute;
+     top: 20%;
+
+ }
+
+ .StatToggle input::before {
+     content: 'Normal';
+     left: 30px;
+ }
+
+ .StatToggle input::after {
+     content: 'Dungeon';
+     right: 30px;
+ }
+
+ .StatToggle label {
+     position: absolute;
+     top: 1px;
+     bottom: 1px;
+ }
+
+ .StatToggle input+Label {
+     cursor: pointer;
+     left: 1px;
+     right: 50%;
+     background-color: rgba(214, 214, 214, 0.384);
+     border-radius: 25px;
+     transition: 300ms ease;
+    //  border-top-right-radius: 0px;
+    //  border-bottom-right-radius: 0px;
+ }
+
+ .StatToggle input:checked+Label {
+     right: 1px;
+     left: 50%;
+     background-color: rgba(214, 214, 214, 0.384);
+     border-radius: 25px;
+     transition: 300ms ease;
+    //  border-top-left-radius: 0px;
+    //  border-bottom-left-radius: 0px;
+ }

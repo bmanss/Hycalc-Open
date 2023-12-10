@@ -1,0 +1,28 @@
+.CollectionDisplay {
+    display: grid;
+    grid-gap: 5px 50px;
+    grid-template-columns: repeat(2, 1fr);
+    padding: 10px 15px;
+    text-transform: capitalize;
+    width: fit-content;
+}
+
+.CollectionDisplay-ItemGroup{
+    color: white;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.CollectionDisplay-Category{
+    color: aqua;
+    text-transform: capitalize;
+    margin: 0px 15px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid aqua;
+}
+
+.CollectionDisplay-Collection{
+    width: 150px;
+}
+

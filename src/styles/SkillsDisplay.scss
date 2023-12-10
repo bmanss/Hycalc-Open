@@ -1,0 +1,27 @@
+.SkillsDisplay {
+    display: grid;
+    grid-gap: 5px 50px;
+    grid-template-columns: repeat(2, 1fr);
+    padding: 10px 15px;
+    text-transform: capitalize;
+    width: fit-content;
+}
+
+.SkillsDisplay-ItemGroup {
+    color: white;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.SkillsDisplay-Skill {
+    width: 150px;
+}
+
+.SkillsDisplay-Category {
+    color: aqua;
+    text-transform: capitalize;
+    margin: 0px 15px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid aqua;
+}

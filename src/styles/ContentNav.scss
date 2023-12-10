@@ -1,0 +1,30 @@
+
+.ContentNav {
+    display: flex;
+    border-bottom: 1px solid rgb(80, 80, 80);
+    height: fit-content;
+    padding: 10px;
+    margin-left: 15px;
+    margin-right: 15px;
+}
+
+.ContentNav-Option {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 40px;
+    min-width: 100px;
+    border-radius: 5px;
+    padding: 10px;
+    color: white;
+    cursor: pointer;
+
+    &.active {
+        background-color: rgba(155, 155, 155, 0.164);
+      }
+}
+
+.ContentNav-Option:hover {
+   background-color: rgba(155, 155, 155, 0.164);
+   color: aqua;
+}
