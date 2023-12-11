@@ -44,7 +44,7 @@ const SearchBox = ({ itemList, selectedItem, onItemChange, recombob, placeholder
     setDisplayItemName(input);
     setActiveIndex(0);
     const matchedItems = completeList.current.filter((item) => {
-      return (item.name ?? item).toLowerCase().startsWith(input);
+      return (item.name ?? item).toLowerCase().includes(input);
     });
 
     setDisplayItems(matchedItems);
